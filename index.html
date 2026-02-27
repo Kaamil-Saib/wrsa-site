@@ -1,0 +1,60 @@
+<div id="app">
+    <h2>
+        {{ title }}
+    </h2>
+    <div style="margin-bottom: 20px;">
+        <input type="text" placeholder="Enter Product Name" id="addNewProduct">
+        <button @click="addProduct">Add Product</button>
+    </div>
+    <div v-for="product in products" :key="product.id" style="display: flex; align-items: center; margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 10px;">
+        <b>{{ product.name }}</b> 
+        <button @click="deleteProduct(product.id)" style="margin: 0 0 0 5px;">Delete</button>
+    </div>
+    
+</div>
+<script src="firebaseConfig.js"></script>
+<script type="module">
+    import { createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js'
+    import { getFirestore, getDocs, collection, addDoc, doc, setDoc, deleteDoc } from 'https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js'
+    
+    const app = initializeApp(firebaseConfig);
+    var db = getFirestore(app);
+    
+    createApp({
+        data() {
+            return {
+                title: 'WRSA',
+                products: []
+            }
+        },
+        methods:{
+           async refreshData() {
+                const querySnapshot = await getDocs(collection(db, "products"));
+                this.products = querySnapshot.docs.map(doc => ({
+                    id: doc.id,
+                    ...doc.data()
+                }));
+            },
+            async addProduct(){
+                const productName = document.getElementById('addNewProduct').value;
+                if(productName.trim() === ''){
+                    alert('Please enter a product name');
+                    return;
+                }
+                await addDoc(collection(db, "products"), {
+                    name: productName,
+                });
+                document.getElementById('addNewProduct').value = '';
+                this.refreshData();
+            },
+            async deleteProduct(productId){
+                await deleteDoc(doc(db, "products", productId));
+                this.refreshData();
+            },
+        }, 
+        mounted() {
+            this.refreshData();
+        }
+    }).mount('#app')
+</script>
