@@ -1,0 +1,859 @@
+/* 1. Global Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+:root {
+  --primary: #d6a62d;
+  --primary-dark: #b88e27;
+  --bg: #ffffff;
+  --text: #1a1a1a;
+  --gray-bg: #f9f9f9;
+  --gray-text: #666666;
+  --border-color: #e0e0e0;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, system-ui, sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+/* --- NAVIGATION --- */
+nav {
+  padding: 20px 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border-color);
+  background: white;
+}
+
+.nav-left, .nav-right {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+nav a {
+  text-decoration: none;
+  font-weight: 500;
+  color: var(--text);
+  transition: 0.2s;
+}
+
+nav a:hover, .nav-icon:hover {
+  color: var(--primary);
+}
+
+/* --- BUTTONS & INPUTS --- */
+/* Reset default button to be invisible/unstyled for icons */
+button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+/* Reusable Action Button (The "Big Black/Gold" button) */
+.action-btn {
+  display: inline-block;
+  width: 100%;
+  background: #000;
+  color: #fff;
+  padding: 14px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  transition: 0.3s;
+  margin: 15px 0 15px 0;
+}
+
+.action-btn:hover {
+  background: var(--primary);
+  transform: translateY(-1px);
+}
+
+input {
+  width: 100%;
+  padding: 12px 16px;
+  margin-bottom: 15px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background: var(--gray-bg);
+  font-size: 1rem;
+}
+
+input:focus {
+  outline: none;
+  border-color: var(--primary);
+  background: #fff;
+}
+
+/* --- DROPDOWN --- */
+.user-dropdown { position: relative; }
+
+.dropdown-menu {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 10px);
+  background: white;
+  min-width: 160px;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  border: 1px solid var(--border-color);
+  padding: 8px 0;
+  z-index: 100;
+}
+
+.dropdown-menu a, .dropdown-item {
+  display: block;
+  padding: 10px 20px;
+  text-align: left;
+  width: 100%;
+  color: var(--text);
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+.dropdown-menu a:hover, .dropdown-item:hover {
+  background: var(--gray-bg);
+  color: var(--primary);
+}
+
+/* --- AUTH LAYOUT --- */
+.auth-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 70vh;
+  padding: 20px;
+}
+
+.auth-container {
+  width: 100%;
+  max-width: 400px;
+  padding: 40px;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  text-align: center;
+}
+
+.google-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border: 1px solid var(--border-color);
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: 500;
+  margin-top: 10px;
+}
+
+/* --- SHARED PAGE LAYOUT --- */
+.page-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.page-header {
+  margin-bottom: 30px;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 15px;
+}
+
+.grid-layout {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 25px;
+}
+
+/* --- CARDS --- */
+.item-card {
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: #fff;
+  transition: 0.3s ease;
+}
+
+.item-card:hover {
+  border-color: var(--primary);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+}
+
+.item-details h3 {
+  margin: 0 0 8px 0;
+  font-size: 1.1rem;
+}
+
+.price-tag {
+  display: block;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 20px;
+}
+
+/* --- BUTTONS & STATES --- */
+.item-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.text-btn-danger {
+  font-size: 0.85rem;
+  color: #e74c3c;
+  text-decoration: none;
+  font-weight: 600;
+  text-align: center;
+}
+
+.text-btn-danger:hover {
+  text-decoration: underline;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 80px 20px;
+  background: var(--gray-bg);
+  border-radius: 16px;
+}
+
+.empty-icon {
+  font-size: 3rem;
+  color: #ccc;
+  margin-bottom: 15px;
+}
+
+.action-btn-small {
+  display: inline-block;
+  padding: 10px 25px;
+  background: #000;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: 600;
+  margin-top: 15px;
+}
+
+/* --- CART SPECIFIC LAYOUT --- */
+.cart-layout {
+  display: grid;
+  grid-template-columns: 1fr 350px;
+  gap: 40px;
+  align-items: start;
+}
+
+/* For mobile responsiveness */
+@media (max-width: 850px) {
+  .cart-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.cart-item-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.cart-item-info h3 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.cart-item-controls {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+/* Quantity Selector */
+.quantity-selector {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.quantity-selector button {
+  padding: 5px 12px;
+  background: var(--gray-bg);
+  font-weight: bold;
+  transition: 0.2s;
+}
+
+.quantity-selector button:hover {
+  background: #eee;
+}
+
+.quantity-selector span {
+  padding: 0 15px;
+  font-weight: 600;
+  min-width: 40px;
+  text-align: center;
+}
+
+/* Summary Box */
+.cart-summary {
+  background: var(--gray-bg);
+  padding: 30px;
+  border-radius: 12px;
+  position: sticky;
+  top: 20px;
+}
+
+.cart-summary h3 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 10px;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+
+.summary-row.total {
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 2px solid var(--border-color);
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.cart-summary .action-btn {
+  margin-top: 20px;
+}
+
+
+/* --- ADMIN UI HELPERS --- */
+.admin-link {
+  color: var(--primary) !important;
+  font-weight: 700 !important;
+}
+
+.admin-badge {
+  background: var(--primary);
+  color: white;
+  font-size: 0.65rem;
+  padding: 1px 5px;
+  border-radius: 4px;
+  margin-left: 4px;
+  vertical-align: middle;
+  text-transform: uppercase;
+}
+
+/* Add a visual indicator for admin-only sections */
+.admin-zone {
+  border: 1px dashed var(--primary);
+  background: rgba(214, 166, 45, 0.03);
+  padding: 20px;
+  border-radius: 8px;
+  margin: 20px 0;
+}
+
+
+/* --- ADMIN DASHBOARD --- */
+.admin-tabs {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.admin-tabs button {
+  padding: 10px 20px;
+  border: 1px solid var(--border-color);
+  background: white;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.admin-tabs button.active {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+.admin-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background: white;
+}
+
+.admin-table th, .admin-table td {
+  padding: 15px;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.status-pill {
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.status-pill.pending { background: #f1c40f; color: #fff; }
+.status-pill.shipped { background: #3498db; color: #fff; }
+
+.report-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.report-card {
+  background: #f8f9fa;
+  padding: 25px;
+  border-radius: 12px;
+  border-left: 5px solid var(--primary);
+}
+
+.product-img-small {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.tag-list {
+  margin: 10px 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+/* Modal Overlay */
+.media-modal-overlay {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0,0,0,0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.media-modal {
+  background: white;
+  width: 90%;
+  max-width: 900px;
+  height: 80vh;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.modal-header {
+  padding: 20px;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+}
+
+.modal-tabs {
+  display: flex;
+  background: #f9f9f9;
+}
+
+.modal-tabs button {
+  flex: 1;
+  padding: 15px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  border-bottom: 2px solid transparent;
+}
+
+.modal-tabs button.active {
+  background: white;
+  border-bottom: 2px solid var(--primary);
+  color: var(--primary);
+}
+
+.modal-body {
+  flex: 1;
+  padding: 30px; /* Increased padding for better margins around content */
+  overflow-y: auto;
+}
+
+/* Library Grid */
+.media-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 20px; /* Increased gap for a cleaner look */
+}
+
+.media-item {
+  position: relative;
+  aspect-ratio: 1;
+  border: 3px solid transparent;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.media-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.media-item.selected {
+  border-color: var(--primary);
+}
+
+.check-badge {
+  position: absolute;
+  top: 5px; right: 5px;
+  background: var(--primary);
+  color: white;
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px;
+}
+
+/* --- UPDATED FOOTER & BUTTON --- */
+.modal-footer {
+  padding: 20px 30px; /* This creates the side margins for the button */
+  border-top: 1px solid #eee;
+  background: white;
+  display: flex;
+  justify-content: center;
+}
+
+.modal-footer .action-btn {
+  width: 100%; /* Spans across the modal */
+  padding: 16px;
+  background: var(--primary);
+  color: white;
+  border-radius: 8px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.modal-footer .action-btn:hover {
+  background: var(--primary-dark);
+}
+
+/* Upload Zone */
+.drop-zone {
+  height: 250px;
+  border: 2px dashed #ccc;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+  margin: 10px 0; /* Extra margin for the upload area */
+}
+
+/* Product Form Integration */
+.media-trigger-btn {
+  width: 100%;
+  padding: 15px;
+  border: 2px dashed var(--primary);
+  background: rgba(214, 166, 45, 0.05);
+  color: var(--primary);
+  border-radius: 8px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.mini-preview {
+  margin-top: 10px;
+  position: relative;
+  width: 120px;
+}
+
+.mini-preview img {
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+.mini-preview button {
+  position: absolute;
+  top: -8px; right: -8px;
+  background: #e74c3c;
+  color: white;
+  border-radius: 50%;
+  width: 22px; height: 22px;
+}
+
+
+/* --- CATEGORY MANAGER LAYOUT --- */
+.category-manager {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.input-group input {
+  margin-bottom: 0; /* Align with the Add button */
+  flex: 1;
+}
+
+.input-group .action-btn {
+  padding: 0 30px;
+  height: 48px; 
+  width: auto;
+}
+
+/* --- CATEGORY PILLS (The Tags) --- */
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 15px;
+  padding: 10px;
+  background: #fdfdfd;
+  border-radius: 8px;
+}
+
+.category-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #f0f0f0;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text);
+  border: 1px solid #e0e0e0;
+  transition: all 0.2s ease;
+}
+
+.category-pill:hover {
+  background: #e8e8e8;
+  border-color: var(--primary);
+}
+
+/* Icons inside the pill */
+.category-pill .icon-group {
+  display: flex;
+  gap: 6px;
+  margin-left: 4px;
+  border-left: 1px solid #ccc;
+  padding-left: 8px;
+}
+
+.category-pill button {
+  font-size: 0.75rem;
+  color: #888;
+  transition: 0.2s;
+}
+
+.category-pill button:hover {
+  color: var(--primary);
+}
+
+.category-pill button.delete-icon:hover {
+  color: #e74c3c;
+}
+
+.pill-actions button{
+  font-size: 0.85rem;
+  color: #888;
+  transition: 0.2s;
+  margin: 0 5px 0 0;
+}
+
+
+/* --- CATEGORY SELECT STYLING --- */
+.select-input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background-color: var(--gray-bg);
+  font-size: 1rem;
+  color: var(--text);
+  cursor: pointer;
+  
+  /* Custom Arrow Logic */
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  background-size: 16px;
+  padding-right: 40px; /* Space for the custom arrow */
+  transition: border-color 0.2s, background-color 0.2s;
+}
+
+.select-input:focus {
+  outline: none;
+  border-color: var(--primary);
+  background-color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(214, 166, 45, 0.1);
+}
+
+.select-input:disabled {
+  background-color: #f5f5f5;
+  cursor: not-allowed;
+  color: #999;
+}
+
+/* Ensure placeholder-like option is grayed out */
+.select-input option[value=""][disabled] {
+  color: #aaa;
+}
+
+.filter-bar {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.search-input {
+  flex: 2;
+  margin-bottom: 0;
+}
+
+.select-input.small {
+  flex: 1;
+  height: 48px;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-top: 10px;
+}
+
+.admin-table th {
+  background: #f8f8f8;
+  padding: 12px;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+  border-bottom: 2px solid var(--border-color);
+}
+
+.sortable {
+  cursor: pointer;
+  color: var(--primary);
+}
+
+.sortable:hover {
+  background: #eee !important;
+}
+
+.table-img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.category-tag {
+  background: #eee;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+}
+
+.admin-table tr:hover {
+  background-color: #fdfdfd;
+}
+
+.admin-table td {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+  vertical-align: middle;
+}
+
+.empty-media{
+  text-align: center;
+  padding: 60px 20px;
+  background: var(--gray-bg);
+  border-radius: 12px;
+}
+
+
+/* Make sure the name, description, and media span both columns */
+.full-width {
+  grid-column: span 2;
+}
+
+.text-area {
+  min-height: 120px;
+  padding: 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background: var(--gray-bg);
+  resize: vertical;
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+/* Pricing Wrapper for the "R" prefix */
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.currency-label {
+  position: absolute;
+  left: 12px;
+  font-weight: bold;
+  color: var(--gray-text);
+  pointer-events: none;
+}
+
+.input-wrapper input {
+  padding-left: 30px; /* Make room for the R */
+  margin-bottom: 0;
+}
+
+.mt-20 {
+  margin-top: 20px;
+}
