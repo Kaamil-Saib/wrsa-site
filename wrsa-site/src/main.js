@@ -24,7 +24,8 @@ const functions = getFunctions(firebaseApp);
 /* --- FONT AWESOME SETUP --- */
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-
+import { faSliders, faGrip, faList, faEye } from '@fortawesome/free-solid-svg-icons'
+library.add(faSliders, faGrip, faList, faEye)
 import {
   faHeart,
   faBagShopping,

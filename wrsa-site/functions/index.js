@@ -9,7 +9,6 @@ exports.askAI = onCall(
   { secrets: [geminiKey] },
   async (request) => {
 
-    // Must be signed in
     if (!request.auth) {
       throw new HttpsError("unauthenticated", "You must be signed in to use AI features.");
     }
@@ -23,7 +22,7 @@ exports.askAI = onCall(
     const genAI = new GoogleGenerativeAI(geminiKey.value());
 
     const model = genAI.getGenerativeModel({
-      model: "gemini-1.5-flash", // Free tier, fast
+      model: "gemini-3-flash-preview", 
       systemInstruction: systemPrompt || undefined,
     });
 
