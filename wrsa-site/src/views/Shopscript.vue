@@ -29,7 +29,7 @@ const sortBy = ref('newest')
 
 const showWishlistPanel = ref(false)
 
-// ── REPLACE the old local wishlist ref with the composable ──────────────────
+//  REPLACE the old local wishlist ref with the composable 
 const { wishlistIds, toggle: toggleWishlist } = useWishlist()
 
 // Products whose IDs are in the wishlist
@@ -47,7 +47,7 @@ const toggleWishlistItem = async (product) => {
     emit('notify', result.message || 'Sign in to use your wishlist', 'error')
   }
 }
-// ────────────────────────────────────────────────────────────────────────────
+// 
 
 const addToCart = (product) => {
   emit('notify', `${product.name} added to cart!`, 'success')

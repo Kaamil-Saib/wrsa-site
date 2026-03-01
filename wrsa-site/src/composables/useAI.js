@@ -4,36 +4,29 @@ import { getFunctions, httpsCallable } from 'firebase/functions';
 /**
  * useAI — composable to call your Firebase/Gemini Cloud Function.
  *
- * Basic usage:
- *   const { generate, result, loading, error } = useAI()
- *   await generate("Write a short product description for blue cargo shorts")
- *   console.log(result.value)
+ * Text usage:
+ *   const { generate, loading, error } = useAI()
+ *   await generate("Write a product description", { systemPrompt, maxTokens })
  *
- * With a system prompt:
- *   await generate("Blue cargo shorts, rugged", {
- *     systemPrompt: "You are a product copywriter. Write punchy 2-sentence descriptions.",
- *     maxTokens: 100
- *   })
+ * Image usage:
+ *   const { generateWithImage, loading, error } = useAI()
+ *   await generateWithImage(imageBase64, mimeType, prompt, { systemPrompt, maxTokens })
  */
 export function useAI() {
-  const result = ref(null);
+  const result  = ref(null);
   const loading = ref(false);
-  const error = ref(null);
+  const error   = ref(null);
 
   const functions = getFunctions();
   const askAI = httpsCallable(functions, 'askAI');
 
   /**
-   * @param {string} prompt       - The prompt to send
-   * @param {object} options
-   * @param {string} [options.systemPrompt] - Optional system/context instruction
-   * @param {number} [options.maxTokens]    - Max response tokens (default: 500)
-   * @returns {Promise<string>}             - The AI response text
+   * Text-only generation
    */
   const generate = async (prompt, options = {}) => {
     loading.value = true;
-    error.value = null;
-    result.value = null;
+    error.value   = null;
+    result.value  = null;
 
     try {
       const response = await askAI({
@@ -55,5 +48,39 @@ export function useAI() {
     }
   };
 
-  return { generate, result, loading, error };
+  /**
+   * Vision generation — sends an image + text prompt to Gemini
+   * @param {string} imageBase64  - Base64 encoded image (no data:// prefix)
+   * @param {string} mimeType     - e.g. "image/jpeg", "image/png", "image/webp"
+   * @param {string} prompt       - Text prompt to accompany the image
+   * @param {object} options      - { systemPrompt, maxTokens }
+   */
+  const generateWithImage = async (imageBase64, mimeType, prompt, options = {}) => {
+    loading.value = true;
+    error.value   = null;
+    result.value  = null;
+
+    try {
+      const response = await askAI({
+        prompt,
+        systemPrompt:  options.systemPrompt  ?? null,
+        maxTokens:     options.maxTokens     ?? 100,
+        imageBase64,
+        imageMimeType: mimeType,
+      });
+
+      result.value = response.data.result;
+      return result.value;
+
+    } catch (err) {
+      error.value = err?.message ?? "AI image request failed. Please try again.";
+      console.error("[useAI image]", err);
+      return null;
+
+    } finally {
+      loading.value = false;
+    }
+  };
+
+  return { generate, generateWithImage, result, loading, error };
 }

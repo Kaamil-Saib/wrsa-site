@@ -1,12 +1,13 @@
 import './assets/main.css'
+
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 
-/* --- FIREBASE SETUP --- */
+/* --- Firebase --- */
 import { initializeApp } from "firebase/app"
 import { getFirestore } from "firebase/firestore"
-import { getFunctions } from "firebase/functions"   
+import { getFunctions } from "firebase/functions"
 
 const firebaseConfig = {
   apiKey: "AIzaSyAPBXBoYXFURJ0pC9T_vkOXvS5h2fPMXDA",
@@ -19,44 +20,34 @@ const firebaseConfig = {
 
 const firebaseApp = initializeApp(firebaseConfig);
 const db = getFirestore(firebaseApp);
-const functions = getFunctions(firebaseApp);       
+const functions = getFunctions(firebaseApp);
 
-/* --- FONT AWESOME SETUP --- */
+/* --- Font Awesome --- */
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import { faSliders, faGrip, faList, faEye } from '@fortawesome/free-solid-svg-icons'
-library.add(faSliders, faGrip, faList, faEye)
+
 import {
-  faHeart,
-  faBagShopping,
-  faUser,
-  faImages,
-  faCloudUploadAlt,
-  faChevronDown,
-  faPlus,
-  faTrash,
-  faImage,
-  faEdit,
-  faTimes,
-  faWandMagicSparkles   // AI buttons
+  faHeart, faBagShopping, faUser, faImages, faCloudUploadAlt,
+  faChevronDown, faPlus, faTrash, faImage, faEdit, faTimes,
+  faWandMagicSparkles, faSliders, faGrip, faList, faEye, faCamera,
+  faTruck, faMountainSun, faRotateLeft, faLock,
+  faMapMarkerAlt, faPhone, faEnvelope,
+  faMoneyBillWave, faChartLine, faBox, faCheck, faRotateRight
 } from '@fortawesome/free-solid-svg-icons'
 
+import { faInstagram, faFacebookF, faTiktok } from '@fortawesome/free-brands-svg-icons'
+
 library.add(
-  faHeart,
-  faBagShopping,
-  faUser,
-  faImages,
-  faCloudUploadAlt,
-  faChevronDown,
-  faPlus,
-  faTrash,
-  faImage,
-  faEdit,
-  faTimes,
-  faWandMagicSparkles 
+  faHeart, faBagShopping, faUser, faImages, faCloudUploadAlt,
+  faChevronDown, faPlus, faTrash, faImage, faEdit, faTimes,
+  faWandMagicSparkles, faSliders, faGrip, faList, faEye, faCamera,
+  faTruck, faMountainSun, faRotateLeft, faLock,
+  faMapMarkerAlt, faPhone, faEnvelope,
+  faMoneyBillWave, faChartLine, faBox, faCheck, faRotateRight,
+  faInstagram, faFacebookF, faTiktok
 )
 
-/* --- VUE APP INITIALIZATION --- */
+/* --- App --- */
 const app = createApp(App)
 app.component('font-awesome-icon', FontAwesomeIcon)
 app.use(router)

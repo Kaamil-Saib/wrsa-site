@@ -7,15 +7,8 @@
       </p>
     </header>
 
-    <!-- Not signed in -->
-    <div v-if="!isLoggedIn" class="empty-state">
-      <font-awesome-icon icon="bag-shopping" class="empty-icon" />
-      <p>Sign in to view your cart.</p>
-      <router-link to="/signin" class="action-btn-small">Sign In</router-link>
-    </div>
-
     <!-- Loading -->
-    <div v-else-if="cartLoading" class="empty-state">
+    <div v-if="cartLoading" class="empty-state">
       <p style="color:#aaa;">Loading your cart...</p>
     </div>
 
@@ -31,9 +24,11 @@
 
       <!-- Items list -->
       <div class="cart-items-list">
-
-        <div v-for="item in cartItems" :key="`${item.productId}-${item.size}`" class="cart-item-row">
-
+        <div
+          v-for="item in cartItems"
+          :key="`${item.productId}-${item.size}`"
+          class="cart-item-row"
+        >
           <!-- Product image -->
           <div class="cart-item-img-wrap">
             <img v-if="item.image" :src="item.image" :alt="item.name" class="cart-item-img" />
@@ -59,7 +54,6 @@
             <span class="item-subtotal">R{{ item.price * item.quantity }}</span>
             <button @click="handleRemove(item)" class="text-btn-danger">Remove</button>
           </div>
-
         </div>
 
         <!-- Clear cart -->
@@ -83,10 +77,32 @@
           <span>Total</span>
           <span>R{{ cartTotal }}</span>
         </div>
-        <button @click="checkout" class="action-btn" style="width:100%; justify-content:center; margin-top:20px;">
-          Checkout
-        </button>
-        <router-link to="/shop" style="display:block; text-align:center; margin-top:14px; font-size:0.85rem; color:#888;">
+
+        <!-- Guest: prompt sign in before checkout -->
+        <div v-if="!isLoggedIn" class="guest-checkout-nudge">
+          <p>
+            <font-awesome-icon icon="lock" style="color:#d6a62d; margin-right:6px;" />
+            Sign in to complete your order - your cart will be saved.
+          </p>
+          <router-link to="/signin" class="action-btn checkout-btn">
+            <font-awesome-icon icon="sign-in-alt" />
+            Sign In to Checkout
+          </router-link>
+          <router-link to="/register" class="register-link">
+            New here? Create an account →
+          </router-link>
+        </div>
+
+        <!-- Logged in: go to checkout -->
+        <router-link v-else to="/checkout" class="action-btn checkout-btn">
+          <font-awesome-icon icon="bag-shopping" />
+          Proceed to Checkout
+        </router-link>
+
+        <router-link
+          to="/shop"
+          style="display:block; text-align:center; margin-top:14px; font-size:0.85rem; color:#888;"
+        >
           ← Continue Shopping
         </router-link>
       </aside>
@@ -103,7 +119,11 @@ import { useCart } from '@/composables/useCart';
 const emit = defineEmits(['notify']);
 
 const isLoggedIn = ref(false);
-const { cartItems, cartLoading, cartCount, cartTotal, updateQty, removeFromCart, clearCart } = useCart();
+
+const {
+  cartItems, cartLoading, cartCount, cartTotal,
+  updateQty, removeFromCart, clearCart,
+} = useCart();
 
 const handleUpdateQty = async (item, change) => {
   await updateQty(item.productId, item.size, change);
@@ -121,97 +141,11 @@ const handleClearCart = async () => {
   }
 };
 
-const checkout = () => {
-  emit('notify', 'Checkout coming soon!', 'info');
-};
-
 onMounted(() => {
   onAuthStateChanged(getAuth(), (user) => {
     isLoggedIn.value = !!user;
   });
 });
 </script>
+<style src="./Cart.css" scoped></style>
 
-<style scoped>
-.cart-item-row {
-  display: grid;
-  grid-template-columns: 80px 1fr auto;
-  gap: 20px;
-  align-items: center;
-  padding: 20px 0;
-  border-bottom: 1px solid var(--border-color);
-}
-
-.cart-item-img-wrap {
-  width: 80px;
-  height: 80px;
-  border-radius: 8px;
-  overflow: hidden;
-  background: #f5f5f5;
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.cart-item-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-.cart-item-img-placeholder {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.cart-item-info {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.cart-item-info h3 {
-  margin: 0;
-  font-size: 1rem;
-  font-weight: 600;
-}
-
-.cart-item-size {
-  font-size: 0.8rem;
-  color: #888;
-  background: #f4f4f4;
-  padding: 2px 8px;
-  border-radius: 4px;
-  width: fit-content;
-}
-
-.cart-item-controls {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 10px;
-}
-
-.item-subtotal {
-  font-weight: 700;
-  font-size: 1rem;
-  color: var(--text);
-}
-
-@media (max-width: 600px) {
-  .cart-item-row {
-    grid-template-columns: 60px 1fr;
-  }
-  .cart-item-controls {
-    grid-column: span 2;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-  }
-}
-</style>
