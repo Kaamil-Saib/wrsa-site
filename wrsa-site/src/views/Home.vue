@@ -1,7 +1,7 @@
 <template>
   <div class="home">
 
-    <!-- ══════════════════════════ HERO ══════════════════════════════════ -->
+    <!--  HERO ════════ -->
     <section class="hero" :style="{ backgroundImage: `url(${heroBg})` }">
       <div class="hero-overlay"></div>
       <div class="hero-content">
@@ -17,7 +17,7 @@
       </div>
     </section>
 
-    <!-- ══════════════════════════ MARQUEE ═══════════════════════════════ -->
+    <!--  MARQUEE ═════ -->
     <div class="marquee-strip">
       <div class="marquee-track">
         <span v-for="n in 3" :key="n">
@@ -28,7 +28,7 @@
       </div>
     </div>
 
-    <!-- ══════════════════════════ AI SEARCH ═════════════════════════════ -->
+    <!--  AI SEARCH ═══ -->
     <section class="ai-search-section">
       <div class="ai-search-inner">
 
@@ -191,8 +191,8 @@
       </div>
     </section>
 
-    <!-- ══════════════════════════ POPULAR CAROUSEL ════════════════════ -->
-        <!-- ══════════════════════════ POPULAR CAROUSEL ════════════════════ -->
+    <!--  POPULAR CAROUSEL ════════════════════ -->
+        <!--  POPULAR CAROUSEL ════════════════════ -->
     <section class="section popular-section">
       <div class="section-header">
         <div>
@@ -241,7 +241,7 @@
       </div>
     </section>
 
-    <!-- ══════════════════════════ CATEGORIES ══════════════════════════ -->
+    <!--  CATEGORIES  -->
     <section class="section categories-section" v-if="categories.length">
       <div class="section-header">
         <div>
@@ -261,7 +261,7 @@
       </div>
     </section>
 
-    <!-- ══════════════════════════ VALUE PROPS ═════════════════════════ -->
+    <!--  VALUE PROPS  -->
     <section class="section values-section">
       <div class="values-grid">
         <div class="value-card">
@@ -287,7 +287,7 @@
       </div>
     </section>
 
-    <!-- ══════════════════════════ CTA BANNER ══════════════════════════ -->
+    <!--  CTA BANNER  -->
     <section class="cta-banner">
       <div class="cta-banner-bg">
         <div class="cta-orb"></div>
@@ -299,7 +299,7 @@
       </div>
     </section>
 
-    <!-- ══════════════════════════ FOOTER ══════════════════════════════ -->
+    <!--  FOOTER ════ -->
     <footer class="site-footer">
       <div class="footer-inner">
 
