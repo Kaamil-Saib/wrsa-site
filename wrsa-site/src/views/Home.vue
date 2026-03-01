@@ -441,8 +441,6 @@ const runAISearch = async () => {
     return;
   }
 
-  // Use short numeric indices - Gemini returns small numbers reliably
-  // Include color field since "khaki" is a color stored in Firestore
   const catalog = allProducts.value.map((p, i) =>
     `${i}:${p.name}|${p.category || ''}|${p.color || ''}|${(p.description || '').slice(0, 80)}`
   ).join('\n');
@@ -453,7 +451,7 @@ const runAISearch = async () => {
 
   console.log('[AI Search] query:', q, '| catalog size:', allProducts.value.length);
 
-  const raw = await generate(prompt, { systemPrompt, maxTokens: 50 });
+  const raw = await generate(prompt, { systemPrompt, maxTokens: 500 });
 
   console.log('[AI Search] raw response:', raw);
 

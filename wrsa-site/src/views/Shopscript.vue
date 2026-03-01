@@ -1,7 +1,7 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue'
 import { getFirestore, collection, getDocs, query, orderBy } from 'firebase/firestore'
-import { useWishlist } from '@/composables/useWishlist'   // ← ADD THIS
+import { useWishlist } from '@/composables/useWishlist' 
 
 const emit = defineEmits(['notify'])
 const db = getFirestore()

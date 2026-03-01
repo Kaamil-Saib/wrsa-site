@@ -1,17 +1,6 @@
 import { ref } from 'vue';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 
-/**
- * useAI — composable to call your Firebase/Gemini Cloud Function.
- *
- * Text usage:
- *   const { generate, loading, error } = useAI()
- *   await generate("Write a product description", { systemPrompt, maxTokens })
- *
- * Image usage:
- *   const { generateWithImage, loading, error } = useAI()
- *   await generateWithImage(imageBase64, mimeType, prompt, { systemPrompt, maxTokens })
- */
 export function useAI() {
   const result  = ref(null);
   const loading = ref(false);
@@ -64,7 +53,7 @@ export function useAI() {
       const response = await askAI({
         prompt,
         systemPrompt:  options.systemPrompt  ?? null,
-        maxTokens:     options.maxTokens     ?? 100,
+        maxTokens:     options.maxTokens     ?? 1000,
         imageBase64,
         imageMimeType: mimeType,
       });
