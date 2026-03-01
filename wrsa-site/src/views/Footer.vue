@@ -126,7 +126,7 @@ const year = new Date().getFullYear();
 }
 .social-btn:hover { background: #d6a62d; border-color: #d6a62d; color: #0f0f0f; transform: translateY(-2px); }
 
-/*  Headings  */
+/*  HEADINGS  */
 .footer-heading {
   font-family: 'Oswald', sans-serif;
   font-size: 0.68rem;
@@ -137,7 +137,7 @@ const year = new Date().getFullYear();
   margin: 0 0 18px;
 }
 
-/*  Links  */
+/*  LINKS  */
 .footer-links { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
 .footer-links a {
   color: rgba(168,168,168,0.6);

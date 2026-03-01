@@ -1,7 +1,7 @@
 <template>
   <div class="home">
 
-    <!--  HERO ════════ -->
+    <!--  HERO -->
     <section class="hero" :style="{ backgroundImage: `url(${heroBg})` }">
       <div class="hero-overlay"></div>
       <div class="hero-content">
@@ -17,7 +17,7 @@
       </div>
     </section>
 
-    <!--  MARQUEE ═════ -->
+    <!--  MARQUEE -->
     <div class="marquee-strip">
       <div class="marquee-track">
         <span v-for="n in 3" :key="n">
@@ -191,8 +191,7 @@
       </div>
     </section>
 
-    <!--  POPULAR CAROUSEL ════════════════════ -->
-        <!--  POPULAR CAROUSEL ════════════════════ -->
+    <!--  POPULAR CAROUSEL  -->
     <section class="section popular-section">
       <div class="section-header">
         <div>
@@ -299,7 +298,7 @@
       </div>
     </section>
 
-    <!--  FOOTER ════ -->
+    <!--  FOOTER  -->
     <footer class="site-footer">
       <div class="footer-inner">
 
@@ -382,15 +381,15 @@ const emit = defineEmits(['notify']);
 const router = useRouter();
 const db = getFirestore();
 
-//  Data 
+//Data 
 const categories      = ref([]);
-const allProducts     = ref([]);   // full catalog - used for AI context
+const allProducts     = ref([]);   // full catalog- used for AI context
 const popularProducts = ref([]);
 const popularLoading  = ref(true);
 const carouselRef     = ref(null);
 const currentYear     = new Date().getFullYear();
 
-//  AI Search 
+//AI Search 
 const { generate, generateWithImage, loading: aiLoading } = useAI();
 
 const searchMode = ref('text'); // 'text' | 'image'

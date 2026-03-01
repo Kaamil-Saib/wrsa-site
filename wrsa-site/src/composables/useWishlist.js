@@ -4,24 +4,10 @@ import {
   getFirestore, doc, getDoc, updateDoc, arrayUnion, arrayRemove
 } from 'firebase/firestore';
 
-/**
- * useWishlist — per-user wishlist synced to Firestore.
- *
- * Usage in any component:
- *   const { wishlistIds, toggle, inWishlist, loading } = useWishlist()
- *
- * wishlistIds  — ref([]) of product ID strings
- * inWishlist(id) — returns true/false
- * toggle(product) — adds or removes, saves to Firestore
- * loading — true while fetching on mount
- */
-
-// Module-level state so it's shared across all components that call useWishlist()
 const wishlistIds = ref([]);
 const wishlistLoading = ref(false);
 let currentUid = null;
 
-// Initialise once when the module is first imported
 const db = getFirestore();
 const auth = getAuth();
 
@@ -40,7 +26,7 @@ onAuthStateChanged(auth, async (user) => {
       wishlistLoading.value = false;
     }
   } else {
-    // User signed out — clear wishlist
+    // signed out -> clear wishlist
     currentUid = null;
     wishlistIds.value = [];
   }

@@ -69,7 +69,7 @@
           </div>
         </div>
 
-        <!-- Expanded items -->
+        <!-- EXPANDED ITEMS -->
         <transition name="slide-down">
           <div v-if="expandedId === order.id" class="order-items">
             <div v-for="item in order.items" :key="`${item.productId}-${item.size}`" class="order-item-row">

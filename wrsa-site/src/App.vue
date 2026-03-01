@@ -216,7 +216,7 @@ const vClickOutside = {
   font-weight: 700 !important;
   letter-spacing: 2.5px !important;
   text-transform: uppercase !important;
-  color: #1a1a1a !important;   /* black, not gold */
+  color: #1a1a1a !important;  
   text-decoration: none !important;
 }
 .nav-brand:hover { opacity: 0.8; }
@@ -228,7 +228,6 @@ const vClickOutside = {
   flex-shrink: 0;
 }
 
-/*  Other nav links  */
 #app-nav a:not(.nav-brand):not(.admin-link) {
   text-decoration: none;
   font-family: 'Oswald', sans-serif;
@@ -376,18 +375,18 @@ const vClickOutside = {
 
   .nav-left,
   .nav-right {
-    gap: 16px; /* smaller spacing between items */
+    gap: 16px;
   }
 
   .nav-brand {
-    font-size: 1.25rem !important;  /* smaller Wild Rhino text */
+    font-size: 1.25rem !important; 
     letter-spacing: 1.5px !important;
-    gap: 6px !important; /* tighter space between logo + text */
-    line-height: 1 !important; /* remove extra vertical spacing */
+    gap: 6px !important; 
+    line-height: 1 !important; 
   }
 
   .nav-logo-img {
-    height: 38px; /* smaller logo image */
+    height: 38px; 
   }
 
   #app-nav a:not(.nav-brand):not(.admin-link) {
@@ -396,7 +395,7 @@ const vClickOutside = {
   }
 
   .hi-username {
-    display: none; /* optional: hides "Hi, Name" on mobile for clean look */
+    display: none; 
   }
 
 }

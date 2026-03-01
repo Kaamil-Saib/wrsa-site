@@ -218,7 +218,7 @@ const handlePlaceOrder = async () => {
   placing.value   = true;
   orderError.value = '';
 
-  // Pass paymentMethod into placeOrder so it's stored on the Firestore order doc
+  //stores on the Firestore order doc
   const result = await placeOrder({ paymentMethod: selectedPayment.value });
 
   placing.value = false;

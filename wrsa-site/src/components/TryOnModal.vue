@@ -236,7 +236,7 @@ const handleGenerate = async () => {
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap');
 
-/* ── Overlay ── */
+/* Overlay */
 .tryon-overlay {
   position: fixed; inset: 0;
   background: rgba(0,0,0,0.7);
@@ -260,7 +260,7 @@ const handleGenerate = async () => {
   font-family: 'DM Sans', sans-serif;
 }
 
-/* ── Header ── */
+/* Header */
 .tryon-header {
   display: flex; justify-content: space-between; align-items: flex-start;
   padding: 24px 28px 0;
@@ -281,7 +281,7 @@ const handleGenerate = async () => {
 }
 .tryon-close:hover { background: #e0e0e0; }
 
-/* ── Body ── */
+/* Body */
 .tryon-body {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -297,7 +297,7 @@ const handleGenerate = async () => {
 
 .input-block { display: flex; flex-direction: column; }
 
-/* ── Saved photo ── */
+/* Saved photo */
 .saved-photo-wrap {
   position: relative; height: 260px; border-radius: 10px;
   overflow: hidden; background: #f0efed;
@@ -310,7 +310,7 @@ const handleGenerate = async () => {
   letter-spacing: 0.8px; text-transform: uppercase; padding: 3px 9px; border-radius: 4px;
 }
 
-/* ── Drop zone ── */
+/* Drop zone */
 .photo-drop-zone {
   height: 260px; border: 2px dashed #e0e0e0; border-radius: 10px;
   display: flex; flex-direction: column; align-items: center; justify-content: center;
@@ -347,7 +347,7 @@ const handleGenerate = async () => {
   margin: 8px 0 0; font-size: 0.75rem; color: #aaa; line-height: 1.5;
 }
 
-/* ── Product preview card ── */
+/* Product preview card */
 .product-preview-card {
   display: flex; gap: 14px; align-items: center;
   border: 1.5px solid #f0f0f0; border-radius: 10px; padding: 14px;
@@ -362,7 +362,7 @@ const handleGenerate = async () => {
 .product-preview-name { font-weight: 600; font-size: 0.9rem; color: #1a1a1a; }
 .product-preview-price { font-family: 'Oswald', sans-serif; font-size: 1rem; font-weight: 700; color: #1a1a1a; }
 
-/* ── Result area ── */
+/* Result area */
 .tryon-result { display: flex; flex-direction: column; }
 
 .result-placeholder {
@@ -405,14 +405,14 @@ const handleGenerate = async () => {
 }
 .download-btn:hover { background: rgba(214,166,45,0.9); color: #0f0f0f; }
 
-/* ── Error ── */
+/* Error */
 .tryon-error {
   margin: 0 28px 0;
   color: #e74c3c; font-size: 0.85rem;
   display: flex; align-items: center; gap: 7px;
 }
 
-/* ── Footer ── */
+/* Footer */
 .tryon-footer {
   display: flex; justify-content: flex-end; align-items: center; gap: 12px;
   padding: 20px 28px 24px;
@@ -447,7 +447,7 @@ const handleGenerate = async () => {
   animation: spin 0.7s linear infinite;
 }
 
-/* ── Responsive ── */
+/* Responsive */
 @media (max-width: 720px) {
   .tryon-body { grid-template-columns: 1fr; }
   .tryon-modal { max-height: 100vh; border-radius: 0; }
