@@ -55,4 +55,4 @@ const signInWithGoogle = async () => {
 };
 </script>
 
-<style src="Signin.css" scoped></style>
+<style src="./Signin.css" scoped></style>

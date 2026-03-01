@@ -1,7 +1,7 @@
 <template>
   <div class="page-container">
 
-    <!-- ===== MEDIA MODAL ===== -->
+    <!-- MEDIA MODAL-->
     <div v-if="isMediaModalOpen" class="media-modal-overlay">
       <div class="media-modal">
         <div class="modal-header">
@@ -53,7 +53,7 @@
       </div>
     </div>
 
-    <!-- ===== PAGE HEADER & TABS ===== -->
+    <!-- PAGE HEADER & TABS -->
     <div class="page-header">
       <h1>Admin Panel</h1>
       <div class="admin-tabs">
@@ -65,7 +65,7 @@
       </div>
     </div>
 
-    <!-- ===== INVENTORY TAB ===== -->
+    <!-- INVENTORY TAB -->
     <div v-if="activeTab === 'Inventory'" class="admin-content">
 
       <section class="admin-zone mb-20">
@@ -239,7 +239,7 @@
       </section>
     </div>
 
-    <!-- ===== ORDERS TAB ===== -->
+    <!-- ORDERS TAB -->
     <div v-if="activeTab === 'Orders'" class="admin-content">
       <section class="admin-zone">
 
@@ -320,7 +320,7 @@
     </div>
 
 
-    <!-- ===== REPORTS TAB ===== -->
+    <!-- REPORTS TAB -->
     <div v-if="activeTab === 'Reports'" class="admin-content">
 
       <!-- Summary Cards -->

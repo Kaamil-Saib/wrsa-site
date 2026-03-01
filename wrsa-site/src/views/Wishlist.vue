@@ -77,4 +77,4 @@ onMounted(() => {
 });
 </script>
 
-<style src= "Wishlist.css" scoped></style>
+<style src= "./Wishlist.css" scoped></style>
