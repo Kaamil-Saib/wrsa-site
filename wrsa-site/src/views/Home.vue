@@ -15,10 +15,6 @@
           <router-link to="/shop" class="btn-primary">Shop Collection</router-link>
         </div>
       </div>
-      <div class="hero-scroll-hint">
-        <span>Scroll</span>
-        <div class="scroll-line"></div>
-      </div>
     </section>
 
     <!-- ══════════════════════════ MARQUEE ═══════════════════════════════ -->
