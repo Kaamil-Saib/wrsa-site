@@ -366,4 +366,38 @@ const vClickOutside = {
 .dropdown-fade-leave-active { transition: all 0.18s ease; }
 .dropdown-fade-enter-from,
 .dropdown-fade-leave-to { opacity: 0; transform: translateY(-6px); }
+
+@media (max-width: 768px) {
+
+  #app-nav {
+    height: 58px;
+    padding: 0 4%;
+  }
+
+  .nav-left,
+  .nav-right {
+    gap: 16px; /* smaller spacing between items */
+  }
+
+  .nav-brand {
+    font-size: 1.25rem !important;  /* smaller Wild Rhino text */
+    letter-spacing: 1.5px !important;
+    gap: 6px !important; /* tighter space between logo + text */
+    line-height: 1 !important; /* remove extra vertical spacing */
+  }
+
+  .nav-logo-img {
+    height: 38px; /* smaller logo image */
+  }
+
+  #app-nav a:not(.nav-brand):not(.admin-link) {
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+  }
+
+  .hi-username {
+    display: none; /* optional: hides "Hi, Name" on mobile for clean look */
+  }
+
+}
 </style>
